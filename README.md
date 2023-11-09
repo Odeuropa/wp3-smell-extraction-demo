@@ -18,6 +18,11 @@ Install the requirements:
 pip install -r requirements.txt
 ```
 
+
+
+## Run the server
+__`IMPORTANT:`__ Before running the server open `main_odeuropa.py` and set for each language if you want to use GPU or CPU.
+
 Set the max size of the files allowed to be uploaded in the demo.
 ```
 export STREAMLIT_SERVER_MAX_UPLOAD_SIZE=1
