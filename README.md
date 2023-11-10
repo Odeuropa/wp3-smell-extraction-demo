@@ -11,7 +11,7 @@ __`IMPORTANT:`__ Before run `docker build` open `main_odeuropa.py` and set for e
 
 ```
 docker build -t odeuropademo .
-docker run -p 8509:8509 odeuropademo
+docker run -p 8509:8509 --gpus '"device=0"' odeuropademo
 ```
 To change the port edit the Dockerfile.
 
