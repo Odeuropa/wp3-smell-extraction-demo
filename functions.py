@@ -13,7 +13,8 @@ logger = logging.getLogger(__name__)
 # device = "cpu"
 modelsBaseFolder = "models/"
 
-@st.cache_data
+
+@st.cache_data(show_spinner=False)
 def loadModel(model_name,device):
     logger.info(f"loading model {model_name}... [on {device}]")
     model = torch.load(os.path.join(modelsBaseFolder, model_name), map_location=device)

@@ -76,20 +76,29 @@ def main():
     ### upload documents and save them in a temp file
     fp = tempfile.TemporaryFile(mode="w+")
     uploadedFile = False
-    uploaded_file = form.file_uploader("Upload a file")
+    uploaded_file = form.file_uploader("Upload a txt file")
     
     if uploaded_file is not None:
         fp.write(uploaded_file.getvalue().decode("utf-8"))
         fp.seek(0)
         uploadedFile = True
 
-    ### or read the text from the box
-    txt = form.text_area('Insert a text:')
+
+    ### list of examples
+    example = form.selectbox(
+    'Or... you might want to try these examples',
+        ['',
+        'Every morning there is a strong scent of coffee coming from the kitchen.', 
+        'When it\'s hot the trash on the street smells terrible'
+        ]
+    )
+
+    txt = form.text_area('Or... insert a text:')
 
 
     ### lanuguage selection. The names need to match the ones in langdict and langdevice
     language = form.selectbox(
-        'Language',
+        'Select the language of the text:',
         ['English', 'Italian', 'French', 'German', 'Dutch', 'Slovene'])
 
     
@@ -101,15 +110,27 @@ def main():
 
     if form.form_submit_button("Extract the smells"):
         
-        ### if no document is uploaded the text from the input box is saved in the temp file
-        if not uploadedFile:
-            fp.write(txt)
-            fp.seek(0)
+        ### if no document is uploaded the text from the input box or the example is saved in the temp file
 
+        if not uploadedFile:
+            if len(txt) > 0:
+                fp.write(txt)
+                fp.seek(0)
+            elif len(example) > 0:
+                fp.write(example)
+                fp.seek(0)
         
+
+        if not uploadedFile and len(txt) == 0 and len(example) == 0:
+            st.warning('Please enter a text', icon="⚠️")
+            exit()
+        
+ 
         ### convert the text into the format required by the classifier 
         ### only convert the first N tokens defined by "limit"
+   
         convertedText = convertText(fp, limit=1000)
+   
         
         ### Temp files needed by the classifier
         fInput = tempfile.NamedTemporaryFile(delete=False, mode="w")
