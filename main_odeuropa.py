@@ -83,6 +83,7 @@ def main():
         fp.seek(0)
         uploadedFile = True
 
+    txt = form.text_area('Or... insert a text:')
 
     ### list of examples
     example = form.selectbox(
@@ -93,7 +94,7 @@ def main():
         ]
     )
 
-    txt = form.text_area('Or... insert a text:')
+    
 
 
     ### lanuguage selection. The names need to match the ones in langdict and langdevice
