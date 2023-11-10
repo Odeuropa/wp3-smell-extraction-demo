@@ -5,7 +5,17 @@ This repository contains a modified version of the classifier from https://githu
 Before running the demo download all the model in https://drive.google.com/drive/u/1/folders/1HRfiE3atNbXHIfj8mjXNiPJPZCxSmHky and move it in `models` folder.
 
 
+## Run with Docker
+__`IMPORTANT:`__ Before run `docker build` open `main_odeuropa.py` and set for each language if you want to use GPU or CPU.
 
+
+```
+docker build -t odeuropademo .
+docker run -p 8509:8509 odeuropademo
+```
+To change the port edit the Dockerfile.
+
+## Run without docker
 Create an environment as you prefer. E.g. with conda.
 
 ```
@@ -18,9 +28,7 @@ Install the requirements:
 pip install -r requirements.txt
 ```
 
-
-
-## Run the server
+### Run the server
 __`IMPORTANT:`__ Before running the server open `main_odeuropa.py` and set for each language if you want to use GPU or CPU.
 
 Set the max size of the files allowed to be uploaded in the demo.
