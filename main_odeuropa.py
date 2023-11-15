@@ -52,6 +52,14 @@ def main():
         "Dutch": "cuda:0",
         "Slovene": "cuda:0"
     }
+    # langdevice = {
+    #     "English": "cpu",
+    #     "Italian": "cpu",
+    #     "French": "cpu",
+    #     "German": "cpu",
+    #     "Dutch": "cpu",
+    #     "Slovene": "cpu"
+    # }
 
     ### preload the models for the classifier
     for l in langdict:
@@ -76,21 +84,21 @@ def main():
     ### upload documents and save them in a temp file
     fp = tempfile.TemporaryFile(mode="w+")
     uploadedFile = False
-    uploaded_file = form.file_uploader("Upload a txt file")
+    # uploaded_file = form.file_uploader("Upload a txt file")
     
-    if uploaded_file is not None:
-        fp.write(uploaded_file.getvalue().decode("utf-8"))
-        fp.seek(0)
-        uploadedFile = True
+    # if uploaded_file is not None:
+    #     fp.write(uploaded_file.getvalue().decode("utf-8"))
+    #     fp.seek(0)
+    #     uploadedFile = True
 
-    txt = form.text_area('Or... insert a text:')
+    txt = form.text_area('Insert a text:', height=300)
 
     ### list of examples
     example = form.selectbox(
     'Or... you might want to try these examples',
-        ['',
-        'Every morning there is a strong scent of coffee coming from the kitchen.', 
-        'When it\'s hot the trash on the street smells terrible'
+        ['', 
+        '[ENGLISH] It\'s 1787, you are newly arrived in London, and you are walking the short distance from the Saracen\'s Head Inn to the nearby Newgate prison. As you pass the Old Bailey courthouse you catch a terrible smell in the air. Uncertain of its origins, you ask a lawyer as they hurry past on their way to a trial. They tell you that the smell arose from the burning of a woman who had been found guilty of coining farthings. The public burning of women in England only ended in 1790, Catherine Hayes being the last such individual to be thus punished. Up until 1789 the scent of burnt flesh also appeared in the courtroom itself, where some malefactors might be branded with a hot iron - "T" for theft, "F" for felon, or "M" for murder. The smell of burning was a warning to others. But smell could also feature as part of the humilitation of legal or, in some cases, extra-judicial punishment.',
+        '[DUTCH] Evenwel was het eene goede zaak; er werd nu een verbod uitgevaardigd, om elders in de stad visch te verkoopen en de walgelijke overblijfsels van den visch, die vroeger hier en daar werden nedergeworpen, verpesten niet langer de lucht door onaangename reuk; terwijl nu tevens een beter toezigt op de hoedanigheid van den aangeboden visch kon worden uitgeoefend'
         ]
     )
 
@@ -100,7 +108,7 @@ def main():
     ### lanuguage selection. The names need to match the ones in langdict and langdevice
     language = form.selectbox(
         'Select the language of the text:',
-        ['English', 'Italian', 'French', 'German', 'Dutch', 'Slovene'])
+        ['','English', 'Italian', 'French', 'German', 'Dutch', 'Slovene'])
 
     
     outTxt = ""
@@ -121,6 +129,9 @@ def main():
                 fp.write(example)
                 fp.seek(0)
         
+        if len(language) == 0:
+            st.warning('Please select a language', icon="⚠️")
+            exit()
 
         if not uploadedFile and len(txt) == 0 and len(example) == 0:
             st.warning('Please enter a text', icon="⚠️")
