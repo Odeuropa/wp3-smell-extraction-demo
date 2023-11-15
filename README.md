@@ -1,6 +1,6 @@
 # wp3-smell-extraction-demo
 
-This repository contains a modified version of the classifier from https://github.com/Odeuropa/wp3-information-extraction-system-v2 that can bt run through a web interface.
+This repository contains a modified version of the classifier from https://github.com/Odeuropa/wp3-information-extraction-system-v2 that can be used through a web interface.
 
 Before running the demo download all the model in https://drive.google.com/drive/u/1/folders/1HRfiE3atNbXHIfj8mjXNiPJPZCxSmHky and move it in `models` folder.
 
@@ -11,7 +11,7 @@ __`IMPORTANT:`__ Before run `docker build` open `main_odeuropa.py` and set for e
 
 ```
 docker build -t odeuropademo .
-docker run -p 8509:8509 odeuropademo
+docker run -p 8509:8509 --gpus '"device=0"' odeuropademo
 ```
 To change the port edit the Dockerfile.
 
