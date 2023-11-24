@@ -32,7 +32,7 @@ def main():
             "Get Help": 'https://github.com',
             "Report a bug": "https://github.com",
             "About": "Odeuropa demonstrator for the smells extraction tools."})
-
+    
     ### model to be used for every language
     langdict = {
         "English": "en.pt",
@@ -46,11 +46,11 @@ def main():
     ### select where to load the models, could be gpu (e.g. "cuda:0") or cpu (e.g "cpu")
     langdevice = {
         "English": "cuda:0",
-        "Italian": "cuda:0",
+        "Italian": "cuda:1",
         "French": "cuda:0",
-        "German": "cuda:0",
+        "German": "cuda:1",
         "Dutch": "cuda:0",
-        "Slovene": "cuda:0"
+        "Slovene": "cuda:1"
     }
     # langdevice = {
     #     "English": "cpu",
@@ -192,6 +192,14 @@ def main():
         st.markdown("""---""")
         df_xlsx = to_excel(df_out)
         st.download_button(label='Download Output', data=df_xlsx, file_name= 'df_test.xlsx')
+    
+    # footer
+    st.markdown('#')
+    col1, mid,  col3= st.columns([2,10,2])
+    with col1:
+        st.image('eu-logo.png', use_column_width="always")
+    with mid:
+        st.caption("This work has been realised in the context of Odeuropa, a research project that has received funding from the European Union’s Horizon 2020 research and innovation programme under grant agreement No. 101004469.")
 
 
 if __name__ == "__main__":
