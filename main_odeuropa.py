@@ -195,7 +195,7 @@ def main():
     
     # footer
     st.markdown('#')
-    col1, mid,  col3= st.columns([2,10,2])
+    col1, mid= st.columns([2,12])
     with col1:
         st.image('eu-logo.png', use_column_width="always")
     with mid:
