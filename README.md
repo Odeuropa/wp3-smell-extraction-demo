@@ -2,7 +2,7 @@
 
 This repository contains a modified version of the classifier from https://github.com/Odeuropa/wp3-information-extraction-system-v2 that can be used through a web interface.
 
-Before running the demo download all the model in https://drive.google.com/drive/u/1/folders/1HRfiE3atNbXHIfj8mjXNiPJPZCxSmHky and move it in `models` folder.
+Before running the demo download all the model in https://zenodo.org/records/10598306 and move it in `models` folder.
 
 
 ## Run with Docker
@@ -41,7 +41,11 @@ Run the interface on the dessired port. The models will be loaded when opening t
 streamlit run main_odeuropa.py --server.port 8509
 ```
 
+## Publication
 
+If you use this resource, please cite:
+
+`Menini, Stefano. Semantic Frame Extraction in Multilingual Olfactory Events. In Proceedings of LREC-Coling 2024`
 
 ## Funding acknowledgement
 
