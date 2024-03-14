@@ -45,24 +45,24 @@ def main():
     }
 
     ### select where to load the models, could be gpu (e.g. "cuda:0") or cpu (e.g "cpu")
-    # langdevice = {
-    #     "English": "cuda:0",
-    #     "Italian": "cuda:1",
-    #     "French": "cuda:0",
-    #     "German": "cuda:1",
-    #     "Dutch": "cuda:0",
-    #     "Slovene": "cuda:1"
-    #     "Latin": "cuda:1",
-    # }
     langdevice = {
-        "English": "cpu",
-        "Italian": "cpu",
-        "French": "cpu",
-        "German": "cpu",
-        "Dutch": "cpu",
-        "Slovene": "cpu",
-        "Latin": "cpu"
+        "English": "cuda:0",
+        "Italian": "cuda:1",
+        "French": "cuda:0",
+        "German": "cuda:1",
+        "Dutch": "cuda:0",
+        "Slovene": "cuda:1"
+        "Latin": "cuda:1",
     }
+    # langdevice = {
+    #     "English": "cpu",
+    #     "Italian": "cpu",
+    #     "French": "cpu",
+    #     "German": "cpu",
+    #     "Dutch": "cpu",
+    #     "Slovene": "cpu",
+    #     "Latin": "cpu"
+    # }
 
     ### preload the models for the classifier
     for l in langdict:
