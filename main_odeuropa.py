@@ -51,8 +51,8 @@ def main():
         "French": "cuda:0",
         "German": "cuda:1",
         "Dutch": "cuda:0",
-        "Slovene": "cuda:1"
-        "Latin": "cuda:1",
+        "Slovene": "cuda:1",
+        "Latin": "cuda:1"
     }
     # langdevice = {
     #     "English": "cpu",
